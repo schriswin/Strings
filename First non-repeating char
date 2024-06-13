@@ -1,0 +1,28 @@
+package firstNonRepeatingChar;
+import java.util.*;
+import java.util.Map.Entry;
+
+public class FirstNonRepeat {
+	
+	
+	public static char FirstNonRepeatingCharacter(String s){
+		Map<Character,Integer> map = new LinkedHashMap<Character,Integer>();
+		//pre-code
+		for(int i=0;i<s.length();i++){
+			map.put(s.charAt(i),map.getOrDefault(s.charAt(i),0)+1);
+		}
+  
+		//fetch
+		for(Entry<Character,Integer> e: map.entrySet()){
+			if(e.getValue()==1){
+				return e.getKey();
+			}
+		}
+		throw new RuntimeException("non repeating character not found");
+	}
+
+	public static void main(String[] args) {
+		String str = "heelloh";
+		System.out.println(FirstNonRepeatingCharacter(str));
+	}
+}
